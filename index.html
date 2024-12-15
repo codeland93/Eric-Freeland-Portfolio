@@ -105,31 +105,42 @@
             margin-top: 20px;
         }
 
-        /* Portfolio Section */
-        .portfolio-section {
-            background-color: #34495e;
-        }
+/* Portfolio Section */
+.portfolio {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust the gap between the items */
+    justify-content: flex-start; /* Align the items to the left */
+}
 
-        .portfolio-section .gallery {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
+.portfolio .gallery-item {
+    width: calc(33.33% - 20px); /* Set each project item to take up 1/3 of the width */
+    margin: 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc; /* Add border to items if desired */
+    padding: 10px;
+    background-color: #f5f5f5; /* Light background for the gallery items */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .gallery-item {
-            width: 30%;
-            margin-bottom: 20px;
-            background-color: #555;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-        }
+.portfolio .gallery-item:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect on hover */
+}
 
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
+/* Adjust for smaller screen sizes */
+@media screen and (max-width: 1200px) {
+    .portfolio .gallery-item {
+        width: calc(50% - 20px); /* Adjust to 2 items per row */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .portfolio .gallery-item {
+        width: 100%; /* Full width for smaller screens */
+    }
+}
+
 
         /* Contact Section */
         .contact-section {
@@ -311,17 +322,21 @@
             <h2>My Portfolio</h2>
             <div class="gallery">
                 <div class="gallery-item">
-                    <img src="project1.jpg" alt="Project 1">
-                    <p>🕷️ Web App 1</p>
+                    <img src="Santa Chat App.PNG" alt="Project 1">
+                    <p><a href="https://your-link-here.com" target="_blank" style="color: #ff0000; text-decoration: none;">🕷️ Santa Chat App</a></p>
                 </div>
+            </div>
+            
                 <div class="gallery-item">
                     <img src="project2.jpg" alt="Project 2">
                     <p>🕸️ Web App 2</p>
                 </div>
+
                 <div class="gallery-item">
                     <img src="project3.jpg" alt="Project 3">
                     <p>💻 Web App 3</p>
                 </div>
+
             </div>
         </div>
     </section>

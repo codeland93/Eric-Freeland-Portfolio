@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spider-Man Themed Portfolio">
+    <title>Spider-Man Portfolio 🕷️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <button id="trigger-web">🕸️ Launch Spider Web</button>
+
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: 'Bangers', cursive;
+            background-color: #1a1a1a;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #e31b6d; /* Spider-Man Red */
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3.5em;
+            color: yellow;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 30px;
+        }
+
+        header nav ul li a {
+            color: yellow;
+            text-decoration: none;
+            font-size: 1.4em;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #f39c12;
+        }
+
+        section {
+            padding: 60px 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        section h2 {
+            font-size: 3em;
+            color: #f39c12;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 1.4em;
+            line-height: 1.6;
+            color: #bbb;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background-color: #2c3e50;
+        }
+
+        .skills-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skills-section ul li {
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #ecf0f1;
+        }
+
+        .skills-section:hover #hidden-quote {
+            display: block;
+        }
+
+        #hidden-quote {
+            display: none;
+            font-size: 1.5em;
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            background-color: #34495e;
+        }
+
+        .portfolio-section .gallery {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .gallery-item {
+            width: 30%;
+            margin-bottom: 20px;
+            background-color: #555;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: #222;
+        }
+
+        .contact-section form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-section form input,
+        .contact-section form textarea {
+            width: 300px;
+            margin: 10px 0;
+            padding: 15px;
+            font-size: 1.2em;
+            border: 2px solid #e74c3c;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-section form input:focus,
+        .contact-section form textarea:focus {
+            border-color: #f39c12;
+            background-color: #444;
+        }
+
+        .contact-section form button {
+            background-color: #e31b6d;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.4em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-section form button:hover {
+            background-color: #f39c12;
+        }
+
+        /* Spider Sense Alert */
+        .spidey-sense-alert {
+            display: none;
+            font-size: 1.5em;
+            color: #e74c3c;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: shake 1s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(-50%);
+            }
+            25% {
+                transform: translateX(-40%);
+            }
+            50% {
+                transform: translateX(-60%);
+            }
+            75% {
+                transform: translateX(-40%);
+            }
+        }
+
+       /* Spider Web Animation */
+.spider-web {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    background: url('spiderman-logo.png') no-repeat center center;
+    background-size: contain; /* Ensures the logo scales proportionally */
+    animation: swing-web 2s ease-in-out infinite;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Makes sure it's above other elements */
+}
+
+/* Keyframes for swing animation */
+@keyframes swing-web {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    25% {
+        transform: translate(-50%, -50%) rotate(15deg);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    75% {
+        transform: translate(-50%, -50%) rotate(-15deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}
+
+
+        @keyframes swing-web {
+            0% {
+                transform: rotate(0deg) translate(-50%, -50%);
+            }
+            50% {
+                transform: rotate(30deg) translate(-50%, -50%);
+            }
+            100% {
+                transform: rotate(0deg) translate(-50%, -50%);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="spiderman-header">
+        <div class="container">
+            <h1>Eric Freeland 🕷️ Portfolio</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Me Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>
+                🕷️ Hi! I'm Code-Slinger 🕸️, also known as Eric Freeland. I'm a web developer with a superpower of creating dynamic, user-friendly websites. Whether it’s front-end magic or back-end wizardry, I’m ready to tackle any challenge with my trusty web-slinging skills!
+            </p>
+            <button id="spidey-quote-btn">Get a Quote 🕸️</button>
+            <div class="quote" id="spidey-quote">
+                "With great power comes great responsibility."
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <h2>My Skills</h2>
+            <ul>
+                <li>🕸️ JavaScript</li>
+                <li>🕷️ React</li>
+                <li>💻 Node.js</li>
+                <li>🌐 HTML & CSS</li>
+                <li>📂 Git & GitHub</li>
+                <li>🔧 Responsive Design</li>
+                <li>📡 API Integration</li>
+                <li>⚡ Web Performance Optimization</li>
+            </ul>
+            <div id="hidden-quote">
+                "With great power comes great responsibility." - Spider-Man
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <h2>My Portfolio</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="project1.jpg" alt="Project 1">
+                    <p>🕷️ Web App 1</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="project2.jpg" alt="Project 2">
+                    <p>🕸️ Web App 2</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="project3.jpg" alt="Project 3">
+                    <p>💻 Web App 3</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="contact-me">
+            <h2>Contact Me:</h2>
+            <p>Email: <a href="mailto:erichfreeland@gmail.com">erichfreeland@gmail.com</a></p>
+        </div>
+    </section>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const spiderWeb = document.createElement('div');
+    spiderWeb.classList.add('spider-web');
+    document.body.appendChild(spiderWeb);
+
+    // Function to show the web
+    const showSpiderWeb = () => {
+        spiderWeb.style.display = 'block';
+        setTimeout(() => {
+            spiderWeb.style.display = 'none'; // Hide after 3 seconds
+        }, 3000);
+    };
+
+    // Trigger the web animation on a button click
+    const triggerButton = document.getElementById('trigger-web');
+    triggerButton.addEventListener('click', showSpiderWeb);
+});
+</script>
+    <!-- Spider Sense Alert -->
+    <div id="spidey-alert" class="spidey-sense-alert">
+        🚨 Spider Sense Alert! 🚨
+    </div>
+
+    <!-- Spider Web Animation -->
+    <div id="spider-web" class="spider-web"></div>
+
+    <script>
+        // Show Spider Sense Alert when clicking on Portfolio Section
+        const portfolioSection = document.getElementById('portfolio');
+        const spideyAlert = document.getElementById('spidey-alert');
+
+        portfolioSection.addEventListener('click', () => {
+            spideyAlert.style.display = 'block';
+            setTimeout(() => {
+                spideyAlert.style.display = 'none';
+            }, 3000);
+        });
+
+        // Reveal Quote when Button is Clicked
+        const spideyQuoteBtn = document.getElementById('spidey-quote-btn');
+        const spideyQuote = document.getElementById('spidey-quote');
+
+        spideyQuoteBtn.addEventListener('click', () => {
+            spideyQuote.style.display = 'block';
+            setTimeout(() => {
+                spideyQuote.style.display = 'none';
+            }, 3000);
+        });
+
+        // Show Spider Web when Clicking
+        let webElement = document.getElementById('spider-web');
+        document.addEventListener('click', () => {
+            webElement.style.display = 'block';
+            setTimeout(() => {
+                webElement.style.display = 'none';
+            }, 2000);
+        });
+    </script>
+
+</body>
+</html>
